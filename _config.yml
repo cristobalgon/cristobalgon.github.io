@@ -1,1 +1,2 @@
-theme: jekyll-theme-slate
+auto: true
+include: [".well-known"]
