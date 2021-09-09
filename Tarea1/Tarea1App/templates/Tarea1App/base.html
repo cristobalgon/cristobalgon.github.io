@@ -34,14 +34,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item active px-lg-4">
+          <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Home' %}">Inicio</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Usuarios' %}">Usuarios</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Usuarios' 1 %}">Usuarios</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Ciudades' %}">Ciudades</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Ciudades' 1 %}">Ciudades</a>
           </li>
          
         </ul>
@@ -56,6 +56,28 @@
 
   {% endblock %}
 
+<!-- Message -->
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+              <h1>
+              Buscar
+              </h1>
+                <h3> Usuarios </h3> 
+                  <form action="{% url 'Buscar_usuario' %}" method="GET">
+                    <input type="text" name="palabra">
+                    <input type="submit" value="Buscar">
+                  </form>
+                <h3> Ciudades </h3> 
+                  <form action="{% url 'Buscar_ciudad' %}" method="GET">
+                    <input type="text" name="palabra">
+                    <input type="submit" value="Buscar">
+                  </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer text-faded text-center py-5">
@@ -80,11 +102,11 @@
 	          </span>
 	        </a>
 	    </p>
-        <p class="m-0 mbt">
+      <!--  <p class="m-0 mbt">
         	<a href="sample.html" class="link">Política de privacidad</a> ·
         	<a href="sample.html" class="link">Aviso legal</a> ·
         	<a href="sample.html" class="link">Cookies</a>
-		</p>
+		</p>-->
         <p class="m-0 mbt1">&copy; Tarea 1 Cristóbal González</p>
       </div>
 	</footer>

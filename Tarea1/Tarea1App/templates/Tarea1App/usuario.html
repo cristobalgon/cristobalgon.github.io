@@ -1,0 +1,49 @@
+{% extends 'Tarea1App/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'Tarea1App/img/principal.jpg' %}" alt="">
+        <div class="intro-text left-0 bg-faded p-5 rounded">
+          <p class="mb-3">
+          <h1> Viendo información de un usuario </h1> <br>
+          <h3> Detalle del usuario </h3>
+            <ul>
+                <li> Nombre: {{ detalle.name}} {{ detalle.lastName }} </li>
+                <li> Mail: {{ detalle.email }} </li>
+                <li> Fecha nacimiento: {{ detalle.birthdate }} </li>
+            </ul> <br>
+          <h3> Tarjetas </h3>
+            {% if tarjetas %}
+              <ol>
+                  {% for t in tarjetas %}
+                      <li> Número {{ t.creditCard }} ; CVV {{ t.CVV }} </li>
+                  {% endfor %}
+              </ol>
+            {% else %}
+              <p> No hay tarjetas que mostrar </p>
+            {% endif %} <br>
+
+          <h3> Direcciones </h3>
+            {% if direcciones %}
+                <ol>
+                    {% for d in direcciones %}
+                        <li> {{ d.address }}, <a href="{% url 'Ciudad' d.city.name %}"> {{ d.city.name }}, {{ d.city.country }} </a> </li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+              <p> No hay direcciones que mostrar </p>
+            {% endif %}
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

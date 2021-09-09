@@ -1,0 +1,42 @@
+{% extends 'Tarea1App/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'Tarea1App/img/principal.jpg' %}" alt="">
+        <div class="intro-text left-0 bg-faded p-5 rounded">
+          <p class="mb-3">
+          <h1> Viendo información de una ciudad </h1> <br>
+          {% for pos in info %}
+            <h3> Detalle de la ciudad </h3>
+            <ul>
+                <li> Nombre: {{ pos.ciudad.name}} </li>
+                <li> País: {{ pos.ciudad.country }} </li>
+            </ul> <br>
+          <h3> Usuarios registrados en la ciudad </h3>
+            {% if pos.usuarios %}
+              <ol>
+                  {% for u in pos.usuarios %} 
+                      <li><a href="{% url 'Usuario' u.id %}">{{ u.name }} {{ u.lastName }} </a></li>
+                  {% endfor %}
+              </ol>
+            
+            {% else %}
+              <p> No hay usuarios registrados en esta ciudad. </p>
+            {% endif %} <br><br><br>
+          {% endfor %}
+          
+          </p>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}
