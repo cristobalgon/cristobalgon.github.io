@@ -18,7 +18,7 @@ def usuarios(request, page):
     numero = response.headers['X-Total-Count']
     maximo_pags = ( int(numero) + 9 ) // 10
 
-    return render(request, 'Tarea1App/usuarios.html', {'usuarios': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': page})
+    return render(request, 'Tarea1App/usuarios.html', {'usuarios': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': page, 'tipo_busqueda': 'normal'})
 
 def ciudades(request, page):
 
@@ -34,7 +34,7 @@ def ciudades(request, page):
     numero = response.headers['X-Total-Count']
     maximo_pags = ( int(numero) + 9 ) // 10
 
-    return render(request, 'Tarea1App/ciudades.html', {'ciudades': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': page})
+    return render(request, 'Tarea1App/ciudades.html', {'ciudades': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': page, 'tipo_busqueda': 'normal'})
 
 def usuario(request, id):
 
@@ -75,7 +75,7 @@ def ciudad(request, name):
 
     return render(request, 'Tarea1App/ciudad.html', {'info': info})
 
-def buscar_usuario(request):
+def buscar_usuario(request, page=1):
     
     palabra = request.GET["palabra"]
     url = f'https://us-central1-taller-integracion-310700.cloudfunctions.net/tarea-1-2021-2/27429/users?q={palabra}'
@@ -86,15 +86,15 @@ def buscar_usuario(request):
     numero = response.headers['X-Total-Count']
     maximo_pags = ( int(numero) + 9 ) // 10
 
-    return render(request, 'Tarea1App/usuarios.html', {'usuarios': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': 1})
+    return render(request, 'Tarea1App/usuarios.html', {'usuarios': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': 1, 'tipo_busqueda': 'texto', 'busqueda': palabra})
 
 
 
-def buscar_ciudad(request):
+def buscar_ciudad(request, page=1):
     
     palabra = request.GET["palabra"]
 
-    url = f'https://us-central1-taller-integracion-310700.cloudfunctions.net/tarea-1-2021-2/27429/cities?q={palabra}'
+    url = f'https://us-central1-taller-integracion-310700.cloudfunctions.net/tarea-1-2021-2/27429/cities?q={palabra}&_page={page}'
     
     response = requests.get(url)
 
@@ -104,4 +104,4 @@ def buscar_ciudad(request):
     numero = response.headers['X-Total-Count']
     maximo_pags = ( int(numero) + 9 ) // 10
 
-    return render(request, 'Tarea1App/ciudades.html', {'ciudades': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': 1})
+    return render(request, 'Tarea1App/ciudades.html', {'ciudades': response_json, 'cantidad': numero, 'maximo_pags': maximo_pags, 'pagina': 1, 'tipo_busqueda': 'texto', 'busqueda': palabra})

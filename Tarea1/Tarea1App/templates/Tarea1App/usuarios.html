@@ -21,21 +21,31 @@
               </ul>
 
               <p> Página {{ pagina }} de {{ maximo_pags }} </p>
-
+            
               {% if pagina != 1%}
                 {% with anterior=pagina|add:"-1" %}
-                <button> <a href="{% url 'Usuarios' anterior %}"> Anterior </a></button>
+                <!-- Tenemos que ver si la busqueda es normal o por texto -->
+                  {% if tipo_busqueda == 'normal' %}
+                    <button> <a href="{% url 'Usuarios' anterior %}"> Anterior </a></button>
+                  {% else %}
+                    <button> <a href="{% url 'Buscar_usuario' anterior %}"> Anterior </a></button>
+                  {% endif %}
                 {% endwith %}
               {% endif %}
             
               {% if pagina != maximo_pags %}
                 {% with siguiente=pagina|add:"1" %}
-                <button> <a href="{% url 'Usuarios' siguiente %}"> Siguiente </a></button>
+                <!-- Tenemos que ver si la busqueda es normal o por texto -->
+                  {% if tipo_busqueda == 'normal'%}
+                    <button> <a href="{% url 'Usuarios' siguiente %}"> Siguiente </a></button>
+                  {% else %}
+                    <button> <a href="{% url 'Buscar_usuario' siguiente %}"> Siguiente </a></button>
+                  {% endif %}
                 {% endwith %}
               {% endif %}
 
             {% else %}
-              <p> No hay usuarios que mostrar </p>
+              <p> No hay usuarios que mostrar relacionado con la búsqueda <h3> '{{ busqueda }}' </h3></p>
 
             {% endif %}
           </p>

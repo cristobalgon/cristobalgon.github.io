@@ -23,18 +23,28 @@
 
               {% if pagina != 1%}
                 {% with anterior=pagina|add:"-1" %}
-                <button> <a href="{% url 'Ciudades' anterior %}"> Anterior </a></button>
+                <!-- Tenemos que ver si la busqueda es normal o por texto -->
+                  {% if tipo_busqueda == 'normal' %}
+                    <button> <a href="{% url 'Ciudades' anterior %}"> Anterior </a></button>
+                  {% else %}
+                    <button> <a href="{% url 'Buscar_ciudad' anterior %}"> Anterior </a></button>
+                  {% endif %}
                 {% endwith %}
               {% endif %}
             
               {% if pagina != maximo_pags %}
                 {% with siguiente=pagina|add:"1" %}
-                <button> <a href="{% url 'Ciudades' siguiente %}"> Siguiente </a></button>
+                <!-- Tenemos que ver si la busqueda es normal o por texto -->
+                  {% if tipo_busqueda == 'normal' %}
+                    <button> <a href="{% url 'Ciudades' siguiente %}"> Siguiente </a></button>
+                  {% else %}
+                    <button> <a href="{% url 'Buscar_ciudad' siguiente %}"> Siguiente </a></button>
+                  {% endif %}
                 {% endwith %}
               {% endif %}
 
             {% else %}
-              <p> No hay ciudades que mostrar </p>
+              <p> No hay ciudades que mostrar relacionado con la búsqueda <h3> '{{ busqueda }}' </h3> </p>
 
             {% endif %}
           </p>

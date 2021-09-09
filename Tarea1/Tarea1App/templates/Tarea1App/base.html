@@ -65,12 +65,12 @@
               Buscar
               </h1>
                 <h3> Usuarios </h3> 
-                  <form action="{% url 'Buscar_usuario' %}" method="GET">
+                  <form action="{% url 'Buscar_usuario' 1 %}" method="GET">
                     <input type="text" name="palabra">
                     <input type="submit" value="Buscar">
                   </form>
                 <h3> Ciudades </h3> 
-                  <form action="{% url 'Buscar_ciudad' %}" method="GET">
+                  <form action="{% url 'Buscar_ciudad' 1 %}" method="GET">
                     <input type="text" name="palabra">
                     <input type="submit" value="Buscar">
                   </form>
